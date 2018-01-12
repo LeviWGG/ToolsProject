@@ -5,7 +5,7 @@ extern "C"
 JNIEXPORT jstring
 
 JNICALL
-Java_app_mian_wangliwei_myproject_MainActivity_stringFromJNI(
+Java_app_mian_wangliwei_toolsproject_MainActivity_stringFromJNI(
         JNIEnv *env,
         jobject /* this */) {
     std::string hello = "Hello from C++";

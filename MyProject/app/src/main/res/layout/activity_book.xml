@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.mian.wangliwei.myproject.view.BookActivity">
+    tools:context="app.mian.wangliwei.toolsproject.view.BookActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
