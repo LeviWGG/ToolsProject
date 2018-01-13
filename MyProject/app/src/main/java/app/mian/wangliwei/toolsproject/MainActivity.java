@@ -2,6 +2,7 @@ package app.mian.wangliwei.toolsproject;
 
 //import android.app.Fragment;
 //import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     Intent intent;
     private static boolean enableExit = false;
     private static MyHandler myHandler = new MyHandler();
+    private int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
 
     private Fragment aFragment;
 
@@ -46,11 +49,18 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTransParent();
         ButterKnife.bind(this);
 
         // Example of a call to a native method
         tvLogin.setText(stringFromJNI());
 
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //setTransParent();
     }
 
     @OnClick(R.id.sample_text)
@@ -114,5 +124,11 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void setTransParent(){
+        getWindow().getDecorView().setSystemUiVisibility(option);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getSupportActionBar().hide();
     }
 }
