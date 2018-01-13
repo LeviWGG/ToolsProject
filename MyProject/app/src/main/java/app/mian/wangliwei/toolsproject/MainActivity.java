@@ -26,8 +26,10 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity implements AFragment.OnFragmentInteractionListener {
     Intent intent;
     private static boolean enableExit = false;
+    private static boolean immersive = false;
     private static MyHandler myHandler = new MyHandler();
-    private int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+    private int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
 
     private Fragment aFragment;
 
@@ -64,6 +66,17 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
          * only set in onCreate once
          */
         //setTransParent();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if(immersive & hasFocus){
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    |View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            |View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
 
     @OnClick(R.id.sample_text)
@@ -132,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     public void setTransParent(){
         getWindow().getDecorView().setSystemUiVisibility(option);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
         getSupportActionBar().hide();
     }
 }
