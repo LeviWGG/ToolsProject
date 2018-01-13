@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     @Override
     protected void onRestart() {
         super.onRestart();
+        /**
+         * only set in onCreate once
+         */
         //setTransParent();
     }
 
