@@ -6,10 +6,15 @@ import android.util.Log;
 
 import com.google.gson.GsonBuilder;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.IOException;
 
 import app.mian.wangliwei.toolsproject.http.BookService;
 import app.mian.wangliwei.toolsproject.model.Book;
+import app.mian.wangliwei.toolsproject.utils.MessageEvent;
 import app.mian.wangliwei.toolsproject.view.IBookView;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -32,7 +37,13 @@ public class BookPresenterImp implements IBookPresenter {
     public BookPresenterImp(IBookView iBookView){
         this.iBookView = iBookView;
         uihandler = new Handler(Looper.getMainLooper());
+        EventBus.getDefault().register(this);
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void setMessage(MessageEvent event){
+        iBookView.setBookText(event.getMessage());
     }
 
     @Override
@@ -83,5 +94,12 @@ public class BookPresenterImp implements IBookPresenter {
 
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d("book","book present destroy");
+        iBookView = null;
+        EventBus.getDefault().unregister(this);
     }
 }

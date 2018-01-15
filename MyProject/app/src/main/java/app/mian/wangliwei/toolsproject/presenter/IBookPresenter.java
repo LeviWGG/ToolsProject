@@ -7,4 +7,5 @@ package app.mian.wangliwei.toolsproject.presenter;
 public interface IBookPresenter {
     void getSearchBook(String name,String tag,int count,int start);
     void getBookUseOkhttp(String name,String tag,int count,int start);
+    void onDestroy();
 }
