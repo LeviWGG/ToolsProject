@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     @BindView(R.id.activity_book)
     TextView tvBook;
 
+    @BindView(R.id.text_version)
+    TextView tvVersion;
+
     @BindView(R.id.add_fragment)
     TextView textFragment;
 
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
 
         // Example of a call to a native method
         tvLogin.setText(stringFromJNI());
-
+        //Toast.makeText(this,"This is update",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -77,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
                     |View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             |View.SYSTEM_UI_FLAG_FULLSCREEN|View.SYSTEM_UI_FLAG_HIDE_NAVIGATION|View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+
+    @OnClick(R.id.text_version)
+    public void toast(){
+        Toast.makeText(this,"This new app",Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.sample_text)

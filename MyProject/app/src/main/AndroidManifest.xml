@@ -2,15 +2,33 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.mian.wangliwei.toolsproject">
 
+    <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 外部存储读权限，调试工具加载本地补丁需要 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24770201-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="51e96e819e493f034a29c022b97a209b" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDL6V7qXBBULrzqjI/Lpx4APBgLZL5uGGX6ZCgGGwcbVSqkgC33W73OthN98BuB2iQnnTX7Juz4Fh0+ZOu/dAG4QlgHWLlZXLeeFIOXehHs/EmnP424e9kiOByZnxWHrOfRqMdmkkrGFwVxmthgkWoc0LjbXYAAHE+GA55x1o0JHBgiw5VGhQWBmeXPoFVj2fEaaUl7Oezqu6TFf/oM7xEXYbpUDs2VQ+SY4shdzzct+TR4tv+O71yO0Lyeb4+oSj1o23YgIBKZCw/fXsNncAAMeA5OFR6zQ+g3jePkzRffXgjpkR/hLPSYfh9pJcAUNuLoCvnFYnRFpX1SxCptUi11AgMBAAECggEBAKFQP7xblLdkOiO7i05rKLq6z7LDwjrKpnJNpbQe0aJ338I/fR3AwAm11Pm+Z6R0dEG6hyfnBXTF2eCwaigNmAayxX0aXZcqWECArhG5ilDWzVW4W19k6sO9bDLDvX6V9NbSFN06QlkvgSj8fMz4fN/K51LzRv3PZ8H3PvOD7hMTcpqOAUYO7FH3Zp2hrL4eaX3EbfmfIp+TjOyHosm0rJwUxJl/84RLAxBloksS28L+EYi0BuFAEV+CPuglnT3kXkYkEu1/UFfaGmU+OZebEcafvVzgOUJGdUYuwzz9MCC8SNPp2uynGnTUhyAsPh/+5Fy84xWlPhj1h4a89Jq774kCgYEA8bLVmIQM2N3C+SIY6htZ/DpdZa1kOIohJu6aBh86rjwD2qgVFdvIKxY9VK/shjRgB3gp0z3G/dHMZ60/G/ggYi/d7PvnxSct/SRpZCycZcfR9TU7hfYgYR5JBr+PJLqzNaoB943Qq4zob5yqdaOSa/AGc6BOXOVwAZ6Aa0xku/8CgYEA1/onEWim1XIZOZ8yxnGsryTjZGGp/q+sycfnle2Hj2aumgyDwEF0f8CFqNhLb4B3r4qP9cTVXT/PAKnd1lsPKY1BZOknapdZL5v038TSeFFri/6LQSG2FLVywfg3yrk9mvy1kZXDNg4gsWy7m5hJgrFX1/hDJhviA5GPYrJH5osCgYBhPpKxym9g0digZBeiGV8bHGB3iEvKc8ji4R0XWXlCoOLsFrRlFwhyTYBfkmiXlnsMhkxNsY1ekgqrrAi4OBzPZHLl5nRZ3mmicAP3Sfui98KB5ekM/PoKGSVIkcoF/Rgdf0lLUMOkQg1C2sW6jxVaWDhATT86IRXvkNYaVaIyAQKBgC0gEhucDweX0FduwNAfniH2BiDKGxegouyB/QwhVeqLXL3JEZoQ0wOCOSr/DjvczqT5wXxrRN034MtVsoj/+5oF7nzkDh1CRBsjbbV3TTZgZKUaaQQRxBZtlu2aLCYKMCn61QD3FpNrvj7z5frrhaht31m7gGQs/TsbpabMcyNjAoGBAMfYbGM55FEBWaOXA4iozwpan7d/IDs4JRqrngQqjggTLvySymFqlKYNo8sPxc/G52sRvg1bKHOVSby3g6tTkVvtJ2fM/gdQfuVvLnklyMp8G9gcws0nI6bLwCwU/cs3RrgAM9sFh93I+BcdmRc0Pdw9xqifmGq6c1AyTHhGf0Z1" />
+
         <activity android:name="app.mian.wangliwei.toolsproject.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
