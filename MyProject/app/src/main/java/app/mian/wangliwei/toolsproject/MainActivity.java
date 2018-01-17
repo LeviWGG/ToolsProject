@@ -19,7 +19,8 @@ import android.widget.Toast;
 import javax.inject.Inject;
 
 import app.mian.wangliwei.toolsproject.bean.Component.DaggerMainActivityComponent;
-import app.mian.wangliwei.toolsproject.bean.Factory;
+import app.mian.wangliwei.toolsproject.bean.Dependent;
+import app.mian.wangliwei.toolsproject.bean.Module.MainActivityModule;
 import app.mian.wangliwei.toolsproject.view.BookActivity;
 import app.mian.wangliwei.toolsproject.view.LoginActivity;
 import app.mian.wangliwei.toolsproject.view.fragment.AFragment;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     private Fragment aFragment;
 
     @Inject
-    Factory factory;
+    Dependent dependent;
 
     @BindView(R.id.sample_text)
     TextView tvLogin;
@@ -63,7 +64,10 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
         setContentView(R.layout.activity_main);
         setTransParent();
         ButterKnife.bind(this);
-        DaggerMainActivityComponent.create().inject(this);
+        //DaggerMainActivityComponent.create().inject(this);
+        DaggerMainActivityComponent.builder()
+                .mainActivityModule(new MainActivityModule("This is immutable inject"))
+                .build().inject(this);
 
         // Example of a call to a native method
         tvLogin.setText(stringFromJNI());
@@ -92,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
 
     @OnClick(R.id.text_version)
     public void toast(){
-        Toast.makeText(this,factory.getProduct().getStr(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,dependent.getStr(),Toast.LENGTH_LONG).show();
     }
 
 
