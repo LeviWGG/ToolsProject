@@ -11,13 +11,11 @@ import com.taobao.sophix.listener.PatchLoadStatusListener;
 
 public class MyApplication extends Application {
 
-    private static String appVersion = "1.0.0";
+    private static String appVersion = "1.0.1";
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-
-//        initSophix();
     }
 
     private void initSophix(){

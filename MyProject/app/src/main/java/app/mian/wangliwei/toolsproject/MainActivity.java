@@ -16,6 +16,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import javax.inject.Inject;
+
+import app.mian.wangliwei.toolsproject.bean.Component.DaggerMainActivityComponent;
+import app.mian.wangliwei.toolsproject.bean.Product;
 import app.mian.wangliwei.toolsproject.view.BookActivity;
 import app.mian.wangliwei.toolsproject.view.LoginActivity;
 import app.mian.wangliwei.toolsproject.view.fragment.AFragment;
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
             |View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
 
     private Fragment aFragment;
+
+    @Inject
+    Product product;
 
     @BindView(R.id.sample_text)
     TextView tvLogin;
@@ -56,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
         setContentView(R.layout.activity_main);
         setTransParent();
         ButterKnife.bind(this);
+        DaggerMainActivityComponent.create().inject(this);
 
         // Example of a call to a native method
         tvLogin.setText(stringFromJNI());
@@ -84,8 +92,9 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
 
     @OnClick(R.id.text_version)
     public void toast(){
-        Toast.makeText(this,"This new app",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,product.getStr(),Toast.LENGTH_LONG).show();
     }
+
 
     @OnClick(R.id.sample_text)
     public void setTv(TextView tv1) {
