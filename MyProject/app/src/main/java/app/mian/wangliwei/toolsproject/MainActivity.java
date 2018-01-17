@@ -19,7 +19,7 @@ import android.widget.Toast;
 import javax.inject.Inject;
 
 import app.mian.wangliwei.toolsproject.bean.Component.DaggerMainActivityComponent;
-import app.mian.wangliwei.toolsproject.bean.Product;
+import app.mian.wangliwei.toolsproject.bean.Factory;
 import app.mian.wangliwei.toolsproject.view.BookActivity;
 import app.mian.wangliwei.toolsproject.view.LoginActivity;
 import app.mian.wangliwei.toolsproject.view.fragment.AFragment;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     private Fragment aFragment;
 
     @Inject
-    Product product;
+    Factory factory;
 
     @BindView(R.id.sample_text)
     TextView tvLogin;
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
 
     @OnClick(R.id.text_version)
     public void toast(){
-        Toast.makeText(this,product.getStr(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,factory.getProduct().getStr(),Toast.LENGTH_LONG).show();
     }
 
 
