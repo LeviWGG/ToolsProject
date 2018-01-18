@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             view = LayoutInflater.from(getContext()).inflate(resourceId,null);
 
             viewHolder = new ViewHolder();
+            viewHolder.student = student;
             viewHolder.photo = (ImageView)view.findViewById(R.id.photo);
             viewHolder.name = (TextView)view.findViewById(R.id.name);
             viewHolder.total = (TextView)view.findViewById(R.id.total);
@@ -50,13 +52,25 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         viewHolder.photo.setImageResource(student.getPhotoId());
         viewHolder.name.setText(student.getName());
         viewHolder.total.setText("  总分：" + student.getTotal());
+        view.setOnClickListener(onClickListener);
 
         return view;
     }
 
     class ViewHolder {
+        Student student;
         ImageView photo;
         TextView name;
         TextView total;
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            ViewHolder viewHolder = (ViewHolder)view.getTag();
+            Toast.makeText(view.getContext(),"数学:"+viewHolder.student.getMath()
+                    +"  语文:"+viewHolder.student.getChinese()+"  英语:"
+                    +viewHolder.student.getEnglish(),Toast.LENGTH_SHORT).show();
+        }
+    };
 }

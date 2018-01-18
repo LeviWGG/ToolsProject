@@ -12,7 +12,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import app.mian.wangliwei.toolsproject.R;
+import app.mian.wangliwei.toolsproject.bean.Component.DaggerListViewFragmentComponent;
+import app.mian.wangliwei.toolsproject.bean.Module.ListViewFragmentModule;
 import app.mian.wangliwei.toolsproject.bean.Student;
 import app.mian.wangliwei.toolsproject.view.Adapter.StudentAdapter;
 import butterknife.BindView;
@@ -26,6 +30,18 @@ public class ListViewFragment extends Fragment {
     private View view;
     private List<Student> list = new ArrayList<>();
     private Unbinder unBinder;
+
+    @Inject
+    Student stuA;
+
+    @Inject
+    Student stuB;
+
+    @Inject
+    Student stuC;
+
+    @Inject
+    Student stuD;
 
     @BindView(R.id.list_student)
     ListView listView;
@@ -49,6 +65,9 @@ public class ListViewFragment extends Fragment {
         }
         unBinder = ButterKnife.bind(this,view);
 
+        DaggerListViewFragmentComponent.builder().listViewFragmentModule(new ListViewFragmentModule())
+                .build().inject(this);
+
         initStudent();
 
         StudentAdapter studentAdapter = new StudentAdapter(getActivity(),R.layout.student_item,list);
@@ -58,11 +77,13 @@ public class ListViewFragment extends Fragment {
     }
 
     private void initStudent() {
-        Student stuA = new Student(R.mipmap.ic_launcher,"小明",90,85,91);
-        Student stuB = new Student(R.mipmap.ic_launcher,"小红",80,90,97);
+//        Student stuA = new Student(R.mipmap.ic_launcher,"小明",90,85,91);
+//        Student stuB = new Student(R.mipmap.ic_launcher,"小红",80,90,97);
 
         list.add(stuA);
         list.add(stuB);
+        list.add(stuC);
+        list.add(stuD);
     }
 
     @Override

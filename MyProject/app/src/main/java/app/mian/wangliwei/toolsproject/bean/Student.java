@@ -49,6 +49,14 @@ public class Student {
         return chinese;
     }
 
+    public void setEnglish(int english) {
+        this.english = english;
+    }
+
+    public int getEnglish() {
+        return english;
+    }
+
     public int getTotal() {
         total = math + chinese +english;
         return total;
