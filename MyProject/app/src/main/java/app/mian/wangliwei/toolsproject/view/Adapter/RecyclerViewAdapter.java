@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -41,9 +42,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         myViewHolder = (MyViewHolder) holder;
         Student student = datas.get(position);
+        myViewHolder.student = student;
         myViewHolder.name.setText(student.getName());
         myViewHolder.photo.setImageResource(student.getPhotoId());
         myViewHolder.total.setText(" 总分："+student.getTotal());
+        myViewHolder.itemView.setOnClickListener(onClickListener);
+        myViewHolder.itemView.setTag(myViewHolder);
 
     }
 
@@ -54,6 +58,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        Student student;
+
         @BindView(R.id.photo)
         ImageView photo;
 
@@ -68,4 +74,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             unbinder = ButterKnife.bind(this,view);
         }
     }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            MyViewHolder myViewHolder = (MyViewHolder)view.getTag();
+            Toast.makeText(view.getContext(),myViewHolder.student.getName()+"  数学:"+myViewHolder.student.getMath()
+                    +"  语文:"+myViewHolder.student.getChinese()+"  英语:"
+                    +myViewHolder.student.getEnglish(),Toast.LENGTH_SHORT).show();
+        }
+    };
 }

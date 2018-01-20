@@ -74,6 +74,12 @@ public class RecyclerViewFragment extends Fragment {
 
         return datas;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }
 
 

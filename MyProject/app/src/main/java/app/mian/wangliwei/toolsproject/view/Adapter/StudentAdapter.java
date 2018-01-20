@@ -68,7 +68,7 @@ public class StudentAdapter extends ArrayAdapter<Student> {
         @Override
         public void onClick(View view) {
             ViewHolder viewHolder = (ViewHolder)view.getTag();
-            Toast.makeText(view.getContext(),"数学:"+viewHolder.student.getMath()
+            Toast.makeText(view.getContext(),viewHolder.student.getName()+"  数学:"+viewHolder.student.getMath()
                     +"  语文:"+viewHolder.student.getChinese()+"  英语:"
                     +viewHolder.student.getEnglish(),Toast.LENGTH_SHORT).show();
         }
