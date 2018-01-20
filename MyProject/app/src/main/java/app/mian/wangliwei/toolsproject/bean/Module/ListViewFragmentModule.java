@@ -9,6 +9,7 @@ import dagger.Provides;
 @Module
 public class ListViewFragmentModule {
     private boolean difference = false;
+    private int id = 0;
 
     public ListViewFragmentModule() {}
 
@@ -16,10 +17,11 @@ public class ListViewFragmentModule {
     public Student providerStudent() {
         if (!difference) {
             this.difference = true;
-            return new Student(R.mipmap.ic_launcher,"小明",90,85,91);
+            id++;
+            return new Student(R.mipmap.ic_launcher,"小明"+id,90,85,91);
         }
         this.difference = false;
-        return new Student(R.mipmap.ic_launcher,"小红",80,90,97);
+        return new Student(R.mipmap.ic_launcher,"小红"+id,80,90,97);
     }
 
 }

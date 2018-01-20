@@ -25,6 +25,7 @@ import app.mian.wangliwei.toolsproject.view.BookActivity;
 import app.mian.wangliwei.toolsproject.view.LoginActivity;
 import app.mian.wangliwei.toolsproject.view.fragment.AFragment;
 import app.mian.wangliwei.toolsproject.view.fragment.ListViewFragment;
+import app.mian.wangliwei.toolsproject.view.fragment.RecyclerViewFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -118,7 +119,8 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     public void addFragment(){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         //aFragment = AFragment.newInstance("test","1");
-        aFragment = new ListViewFragment();
+        //aFragment = new ListViewFragment();
+        aFragment = new RecyclerViewFragment();
 
         if(aFragment != null & !aFragment.isAdded()){
             ft.add(R.id.fragment_content,aFragment);
