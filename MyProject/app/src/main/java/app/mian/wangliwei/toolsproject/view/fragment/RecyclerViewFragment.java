@@ -1,6 +1,7 @@
 package app.mian.wangliwei.toolsproject.view.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import java.util.List;
 import app.mian.wangliwei.toolsproject.R;
 import app.mian.wangliwei.toolsproject.bean.Student;
 import app.mian.wangliwei.toolsproject.view.Adapter.RecyclerViewAdapter;
+import app.mian.wangliwei.toolsproject.view.widget.CategoryItemDecoration;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -27,6 +29,7 @@ public class RecyclerViewFragment extends Fragment {
     private Unbinder unbinder;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private CategoryItemDecoration categoryItemDecoration;
 
     @BindView(R.id.recycler_student)
     RecyclerView recyclerView;
@@ -49,6 +52,9 @@ public class RecyclerViewFragment extends Fragment {
 
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
+
+        categoryItemDecoration = new CategoryItemDecoration(Color.DKGRAY);
+        recyclerView.addItemDecoration(categoryItemDecoration);
 
         adapter = new RecyclerViewAdapter(getActivity(),initData());
         recyclerView.setAdapter(adapter);
