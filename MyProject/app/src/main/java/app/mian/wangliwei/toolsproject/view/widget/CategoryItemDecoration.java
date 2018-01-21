@@ -56,32 +56,33 @@ public class CategoryItemDecoration extends RecyclerView.ItemDecoration {
 
         for(int i=0;i<childCount;i++) {
             View childView = parent.getChildAt(i);
-            View firstView = parent.getChildAt(0);
-            int firstPos = parent.getChildAdapterPosition(firstView);
             int pos = parent.getChildAdapterPosition(childView);
-            int preClass = (firstPos)/10;
-            int currentClass = (firstPos+1)/10;
-            int nextClass = (firstPos+2)/10;
+            int preClass = (pos)/10;
+            int currentClass = (pos+1)/10;
+            int nextClass = (pos+2)/10;
 
 
 
             if(preClass==currentClass) {
+                if(pos != 0 && childView.getBottom() > 120)continue;
                 rect.bottom = 50;
                 rect.top = 0;
             }
 
-            if(pos == 0 || (pos+1)%10 == 0){
+            if((pos+1)%10 == 0){
                 rect.bottom = Math.max(childView.getTop(),50);
                 rect.top = rect.bottom - 50;
-                currentClass++;
-            }else if(currentClass != nextClass && firstView.getBottom() < 50) {
-                rect.bottom = firstView.getBottom();
+            }
+
+            if(currentClass != nextClass && childView.getBottom() < 50) {
+                rect.bottom = childView.getBottom();
                 rect.top = rect.bottom-50;
             }
 
             c.drawRect(rect,mPaint);
+            currentClass++;
 
-            c.drawText("班级:"+currentClass,rect.left+10,rect.bottom,mTextPaint);
+            c.drawText("班级:"+currentClass,rect.left+10,rect.bottom-5,mTextPaint);
         }
     }
 
