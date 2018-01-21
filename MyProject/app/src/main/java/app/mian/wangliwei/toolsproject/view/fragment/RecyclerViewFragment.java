@@ -53,7 +53,7 @@ public class RecyclerViewFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
-        categoryItemDecoration = new CategoryItemDecoration(Color.DKGRAY);
+        categoryItemDecoration = new CategoryItemDecoration(Color.WHITE);
         recyclerView.addItemDecoration(categoryItemDecoration);
 
         adapter = new RecyclerViewAdapter(getActivity(),initData());
