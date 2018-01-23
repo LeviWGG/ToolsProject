@@ -80,10 +80,10 @@ public class CategoryItemDecoration extends RecyclerView.ItemDecoration {
                 rect.top = rect.bottom - mHeight;
             }
 
-            if(currentClass != nextClass && childView.getBottom() < 50) {
+            if(currentClass != nextClass && childView.getBottom() < mHeight) {
                 //下一组最近的一个靠近时移动上一组悬浮框
                 rect.bottom = childView.getBottom();
-                rect.top = rect.bottom-50;
+                rect.top = rect.bottom-mHeight;
             }
 
             c.drawRect(rect,mPaint);
