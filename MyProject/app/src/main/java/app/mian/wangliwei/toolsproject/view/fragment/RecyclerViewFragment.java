@@ -15,6 +15,8 @@ import java.util.List;
 
 import app.mian.wangliwei.toolsproject.R;
 import app.mian.wangliwei.toolsproject.bean.Student;
+import app.mian.wangliwei.toolsproject.presenter.IRecyclerViewPresenter;
+import app.mian.wangliwei.toolsproject.presenter.RecyclerViewPresenterImp;
 import app.mian.wangliwei.toolsproject.view.Adapter.RecyclerViewAdapter;
 import app.mian.wangliwei.toolsproject.view.widget.CategoryItemDecoration;
 import butterknife.BindView;
@@ -30,6 +32,7 @@ public class RecyclerViewFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private CategoryItemDecoration categoryItemDecoration;
+    private IRecyclerViewPresenter iRecyclerViewPresenter;
 
     @BindView(R.id.recycler_student)
     RecyclerView recyclerView;
@@ -49,11 +52,12 @@ public class RecyclerViewFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_recycler_view,container,false);
         }
         unbinder = ButterKnife.bind(this,view);
+        iRecyclerViewPresenter = new RecyclerViewPresenterImp();
 
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
 
-        categoryItemDecoration = new CategoryItemDecoration(Color.WHITE);
+        categoryItemDecoration = new CategoryItemDecoration(Color.WHITE,iRecyclerViewPresenter);
         recyclerView.addItemDecoration(categoryItemDecoration);
 
         adapter = new RecyclerViewAdapter(getActivity(),initData());

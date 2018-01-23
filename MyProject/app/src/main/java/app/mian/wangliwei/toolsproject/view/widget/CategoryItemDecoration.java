@@ -9,11 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
 import android.view.View;
 
+import app.mian.wangliwei.toolsproject.presenter.IRecyclerViewPresenter;
+
 public class CategoryItemDecoration extends RecyclerView.ItemDecoration {
     private Paint mPaint;
     private TextPaint mTextPaint;
+    private IRecyclerViewPresenter iRecyclerViewPresenter;
 
-    public CategoryItemDecoration(int color) {
+    private final static int mHeight = 50;//分割区域高度
+
+    public CategoryItemDecoration(int color, IRecyclerViewPresenter iRecyclerViewPresenter) {
         mPaint = new Paint();
         mPaint.setColor(color);
         mPaint.setAntiAlias(true);
@@ -22,6 +27,8 @@ public class CategoryItemDecoration extends RecyclerView.ItemDecoration {
         mTextPaint.setTextSize(50);
         mTextPaint.setAntiAlias(true);
         mTextPaint.setColor(Color.BLACK);
+
+        this.iRecyclerViewPresenter = iRecyclerViewPresenter;
     }
 
     @Override
@@ -57,24 +64,24 @@ public class CategoryItemDecoration extends RecyclerView.ItemDecoration {
         for(int i=0;i<childCount;i++) {
             View childView = parent.getChildAt(i);
             int pos = parent.getChildAdapterPosition(childView);
-            int preClass = (pos)/10;
-            int currentClass = (pos+1)/10;
-            int nextClass = (pos+2)/10;
-
-
+            int preClass = iRecyclerViewPresenter.getClass(pos-1);
+            int currentClass = iRecyclerViewPresenter.getClass(pos);
+            int nextClass = iRecyclerViewPresenter.getClass(pos+1);
 
             if(preClass==currentClass) {
                 if(pos != 0 && childView.getBottom() > 120)continue;
-                rect.bottom = 50;
+                rect.bottom = mHeight;
                 rect.top = 0;
             }
 
-            if((pos+1)%10 == 0){
-                rect.bottom = Math.max(childView.getTop(),50);
-                rect.top = rect.bottom - 50;
+            if(preClass != currentClass){
+                //高度不小于50，作悬浮效果
+                rect.bottom = Math.max(childView.getTop(),mHeight);
+                rect.top = rect.bottom - mHeight;
             }
 
             if(currentClass != nextClass && childView.getBottom() < 50) {
+                //下一组最近的一个靠近时移动上一组悬浮框
                 rect.bottom = childView.getBottom();
                 rect.top = rect.bottom-50;
             }
@@ -91,10 +98,12 @@ public class CategoryItemDecoration extends RecyclerView.ItemDecoration {
         super.getItemOffsets(outRect,view,parent,state);
 
         int pos = parent.getChildAdapterPosition(view);
+        int preClass = iRecyclerViewPresenter.getClass(pos-1);
+        int currentClass = iRecyclerViewPresenter.getClass(pos);
 
-        if(pos == 0 || (pos+1)%10==0) {
+        if(pos == 0 || preClass != currentClass) {
             //给第一个item预留空间
-            outRect.top = 50;
+            outRect.top = mHeight;
         }
     }
 }
