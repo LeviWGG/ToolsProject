@@ -3,6 +3,7 @@ package app.mian.wangliwei.toolsproject.bean;
 
 public class Student {
     private int photoId;
+    private String url = "http://img5.duitang.com/uploads/item/201512/31/20151231204455_AFLZG.jpeg";
     private String name;
     private int math;
     private int chinese;
@@ -23,6 +24,10 @@ public class Student {
 
     public int getPhotoId() {
         return photoId;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public void setName(String name) {

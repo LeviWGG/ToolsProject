@@ -2,6 +2,7 @@ package app.mian.wangliwei.toolsproject.view.Adapter;
 
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -20,13 +23,15 @@ import butterknife.Unbinder;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
+    private Fragment fragment;
     private Unbinder unbinder;
     private LayoutInflater mInflater;
     private List<Student> datas;
     private MyViewHolder myViewHolder;
 
-    public RecyclerViewAdapter(Context context,List<Student> datas) {
+    public RecyclerViewAdapter(Context context,Fragment fragment,List<Student> datas) {
         this.context = context;
+        this.fragment = fragment;
         this.datas = datas;
         this.mInflater = LayoutInflater.from(context);
     }
@@ -44,7 +49,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Student student = datas.get(position);
         myViewHolder.student = student;
         myViewHolder.name.setText(student.getName());
-        myViewHolder.photo.setImageResource(student.getPhotoId());
+        Glide.with(fragment).load(student.getUrl()).into(myViewHolder.photo);
         myViewHolder.total.setText(" 总分："+student.getTotal());
         myViewHolder.itemView.setOnClickListener(onClickListener);
         myViewHolder.itemView.setTag(myViewHolder);

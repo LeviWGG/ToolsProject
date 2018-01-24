@@ -29,12 +29,18 @@ android {
 }
 
 repositories {
+    mavenCentral()
+    google()
     maven {
         url "http://maven.aliyun.com/nexus/content/repositories/releases"
     }
 }
 
 dependencies {
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.5.0") {
+        exclude group: "com.android.support"
+    }
     implementation 'com.android.support:support-v4:26.1.0'
     //butterknife
     compile 'com.jakewharton:butterknife:8.5.1'

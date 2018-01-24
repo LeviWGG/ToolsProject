@@ -60,7 +60,7 @@ public class RecyclerViewFragment extends Fragment {
         categoryItemDecoration = new CategoryItemDecoration(Color.WHITE,iRecyclerViewPresenter);
         recyclerView.addItemDecoration(categoryItemDecoration);
 
-        adapter = new RecyclerViewAdapter(getActivity(),initData());
+        adapter = new RecyclerViewAdapter(getActivity(),this,initData());
         recyclerView.setAdapter(adapter);
 
         return view;
