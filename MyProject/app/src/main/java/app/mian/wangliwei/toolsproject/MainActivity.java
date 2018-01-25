@@ -23,6 +23,7 @@ import app.mian.wangliwei.toolsproject.bean.Dependent;
 import app.mian.wangliwei.toolsproject.bean.Module.MainActivityModule;
 import app.mian.wangliwei.toolsproject.view.BookActivity;
 import app.mian.wangliwei.toolsproject.view.LoginActivity;
+import app.mian.wangliwei.toolsproject.view.SettingActivity;
 import app.mian.wangliwei.toolsproject.view.fragment.AFragment;
 import app.mian.wangliwei.toolsproject.view.fragment.ListViewFragment;
 import app.mian.wangliwei.toolsproject.view.fragment.RecyclerViewFragment;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
 
     @BindView(R.id.add_fragment)
     TextView textFragment;
+
+    @BindView(R.id.text_setting)
+    TextView textSetting;
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -127,6 +131,12 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
             ft.show(aFragment);
         }
         ft.commit();
+    }
+
+    @OnClick(R.id.text_setting)
+    public void starSetting() {
+        intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
     }
 
     /**

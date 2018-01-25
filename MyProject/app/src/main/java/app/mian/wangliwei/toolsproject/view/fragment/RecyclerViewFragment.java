@@ -52,7 +52,7 @@ public class RecyclerViewFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_recycler_view,container,false);
         }
         unbinder = ButterKnife.bind(this,view);
-        iRecyclerViewPresenter = new RecyclerViewPresenterImp();
+        iRecyclerViewPresenter = new RecyclerViewPresenterImp(getActivity());
 
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
