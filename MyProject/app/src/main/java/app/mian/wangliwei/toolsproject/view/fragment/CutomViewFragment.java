@@ -1,11 +1,13 @@
 package app.mian.wangliwei.toolsproject.view.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import app.mian.wangliwei.toolsproject.R;
 import app.mian.wangliwei.toolsproject.view.widget.CircleBarView;
@@ -23,6 +25,12 @@ public class CutomViewFragment extends Fragment {
     @BindView(R.id.view_circlebar)
     CircleBarView circleBarView;
 
+    @BindView(R.id.text_progress)
+    TextView textProgress;
+
+    @BindView(R.id.text_progress_title)
+    TextView textProgressTitle;
+
 
     public CutomViewFragment() {
         // Required empty public constructor
@@ -37,6 +45,10 @@ public class CutomViewFragment extends Fragment {
         }
 
         unbinder = ButterKnife.bind(this,view);
+        circleBarView.setProcessTime(100,5000);
+        circleBarView.setTextView(textProgress);
+
+        textProgressTitle.setTextColor(Color.DKGRAY);
 
         return view;
     }
