@@ -12,6 +12,7 @@ import com.taobao.sophix.listener.PatchLoadStatusListener;
 public class MyApplication extends Application {
 
     private static String appVersion = "1.0.1";
+    private static Context context;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -46,8 +47,15 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        context = super.getApplicationContext();
+
         // queryAndLoadNewPatch不可放在attachBaseContext 中，否则无网络权限，建议放在后面任意时刻，如onCreate中
-        initSophix();
-        SophixManager.getInstance().queryAndLoadNewPatch();
+        //initSophix();
+        //SophixManager.getInstance().queryAndLoadNewPatch();
+    }
+
+    public static Context getMyContext() {
+        return context;
     }
 }
