@@ -48,7 +48,7 @@ public class BookActivity extends AppCompatActivity implements IBookView {
 
     @OnClick(R.id.btn_search)
     public void searchBook() {
-        iBookPresenter.getBookUseOkhttp("三国演义",null,1,0);
+        iBookPresenter.getSearchBook("三国演义",null,1,0);
     }
 
     @OnClick(R.id.btn_post)

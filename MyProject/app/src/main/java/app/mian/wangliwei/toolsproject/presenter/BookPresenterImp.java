@@ -4,8 +4,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.google.gson.GsonBuilder;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -13,16 +11,20 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.io.IOException;
 
 import app.mian.wangliwei.toolsproject.http.BookService;
+import app.mian.wangliwei.toolsproject.http.ServiceFactory;
 import app.mian.wangliwei.toolsproject.model.Book;
 import app.mian.wangliwei.toolsproject.utils.MessageEvent;
 import app.mian.wangliwei.toolsproject.view.IBookView;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by wangliwei on 2018/1/6.
@@ -48,23 +50,34 @@ public class BookPresenterImp implements IBookPresenter {
 
     @Override
     public void getSearchBook(String name, String tag, int count, int start) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
-                .build();
+        Retrofit retrofit = new ServiceFactory().create(BASE_URL);
         BookService bookService = retrofit.create(BookService.class);
-        Call<Book> call = bookService.getSearchBook(name,tag,count,start);
-        call.enqueue(new Callback<Book>() {
-            @Override
-            public void onResponse(Call<Book> call, Response<Book> response) {
-                iBookView.setBookText(response.body().toString());
-            }
-
-            @Override
-            public void onFailure(Call<Book> call, Throwable t) {
-                Log.d("book","get book fail");
-            }
-        });
+        Observable<Book> observable = bookService.getSearchBook(name,tag,count,start);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Function<Book, ObservableSource<Book.BooksBean>>() {
+                    @Override
+                    public ObservableSource<Book.BooksBean> apply(Book book) throws Exception {
+                        return Observable.fromIterable(book.getBooks());
+                    }
+                })
+                .filter(new Predicate<Book.BooksBean>() {
+                    @Override
+                    public boolean test(Book.BooksBean booksBean) throws Exception {
+                        if(booksBean != null)return true;
+                        return false;
+                    }
+                })
+                .subscribe(new Consumer<Book.BooksBean>() {
+                    @Override
+                    public void accept(Book.BooksBean booksBean) throws Exception {
+                        if(booksBean == null) {
+                            iBookView.setBookText("没找到书本信息");
+                            return;
+                        }
+                        iBookView.setBookText(booksBean.getAuthor_intro());
+                    }
+                });
     }
 
     @Override

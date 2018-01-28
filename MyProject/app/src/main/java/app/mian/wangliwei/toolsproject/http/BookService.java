@@ -1,6 +1,7 @@
 package app.mian.wangliwei.toolsproject.http;
 
 import app.mian.wangliwei.toolsproject.model.Book;
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -11,8 +12,8 @@ import retrofit2.http.Query;
 
 public interface BookService {
     @GET("book/search")
-    Call<Book> getSearchBook(@Query("q") String name,
-                             @Query("tag") String tag,
-                             @Query("count") int count,
-                             @Query("start") int start);
+    Observable<Book> getSearchBook(@Query("q") String name,
+                                   @Query("tag") String tag,
+                                   @Query("count") int count,
+                                   @Query("start") int start);
 }
