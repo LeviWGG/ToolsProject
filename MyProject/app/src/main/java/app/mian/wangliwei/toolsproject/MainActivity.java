@@ -9,10 +9,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +62,9 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     @BindView(R.id.text_setting)
     TextView textSetting;
 
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -68,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         setTransParent();
         ButterKnife.bind(this);
         //DaggerMainActivityComponent.create().inject(this);
