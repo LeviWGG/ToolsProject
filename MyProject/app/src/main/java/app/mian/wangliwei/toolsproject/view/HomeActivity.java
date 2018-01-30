@@ -1,6 +1,7 @@
 package app.mian.wangliwei.toolsproject.view;
 
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -9,15 +10,19 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import app.mian.wangliwei.toolsproject.R;
+import app.mian.wangliwei.toolsproject.bean.ScrollEvent;
 import app.mian.wangliwei.toolsproject.view.Adapter.ViewPagerAdapter;
 import app.mian.wangliwei.toolsproject.view.fragment.CutomViewFragment;
 import app.mian.wangliwei.toolsproject.view.fragment.RecyclerViewFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class HomeActivity extends AppCompatActivity {
@@ -33,6 +38,9 @@ public class HomeActivity extends AppCompatActivity {
 
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+
+    @BindView(R.id.btn_float_totop)
+    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +64,13 @@ public class HomeActivity extends AppCompatActivity {
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),list_fragment,list_title);
         viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
 
+    }
+
+    @OnClick(R.id.btn_float_totop)
+    public void fbScrollToTop() {
+        EventBus.getDefault().post(new ScrollEvent());
     }
 
     public void setTransParent(){

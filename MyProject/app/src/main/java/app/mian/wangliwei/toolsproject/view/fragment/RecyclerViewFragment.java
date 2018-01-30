@@ -1,6 +1,7 @@
 package app.mian.wangliwei.toolsproject.view.fragment;
 
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements IRecyclerViewFg {
     private View view;
     private Unbinder unbinder;
     private RecyclerView.Adapter adapter;
@@ -52,7 +53,7 @@ public class RecyclerViewFragment extends Fragment {
             view = inflater.inflate(R.layout.fragment_recycler_view,container,false);
         }
         unbinder = ButterKnife.bind(this,view);
-        iRecyclerViewPresenter = new RecyclerViewPresenterImp(getActivity());
+        iRecyclerViewPresenter = new RecyclerViewPresenterImp(this);
 
         layoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -89,6 +90,16 @@ public class RecyclerViewFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void scrollToTop() {
+        recyclerView.smoothScrollToPosition(0);
+    }
+
+    @Override
+    public Context getFgContext() {
+        return getActivity();
     }
 }
 

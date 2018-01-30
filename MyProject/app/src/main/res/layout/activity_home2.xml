@@ -25,6 +25,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabMode="scrollable"
             android:layout_marginTop="10dp">
 
         </android.support.design.widget.TabLayout>
@@ -37,5 +38,13 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v4.view.ViewPager>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_float_totop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="30dp"
+        android:src="@mipmap/up"/>
 
 </android.support.design.widget.CoordinatorLayout>
