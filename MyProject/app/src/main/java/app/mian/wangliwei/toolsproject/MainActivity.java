@@ -24,6 +24,7 @@ import app.mian.wangliwei.toolsproject.bean.Component.DaggerMainActivityComponen
 import app.mian.wangliwei.toolsproject.bean.Dependent;
 import app.mian.wangliwei.toolsproject.bean.Module.MainActivityModule;
 import app.mian.wangliwei.toolsproject.view.BookActivity;
+import app.mian.wangliwei.toolsproject.view.HomeActivity;
 import app.mian.wangliwei.toolsproject.view.LoginActivity;
 import app.mian.wangliwei.toolsproject.view.SettingActivity;
 import app.mian.wangliwei.toolsproject.view.fragment.AFragment;
@@ -109,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     @OnClick(R.id.text_version)
     public void toast(){
         Toast.makeText(this,dependent.getStr(),Toast.LENGTH_LONG).show();
+        intent = new Intent(this,HomeActivity.class);
+        startActivity(intent);
     }
 
 
