@@ -38,7 +38,14 @@
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.BookActivity" />
         <activity android:name=".view.SettingActivity" />
-        <activity android:name=".view.HomeActivity"></activity>
+        <activity android:name=".view.HomeActivity" />
+
+        <service
+            android:name=".service.FoodService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
+        </service>
     </application>
 
 </manifest>
