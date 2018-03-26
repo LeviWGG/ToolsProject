@@ -1,82 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_round_dialog">
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_round_dialog"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/text_dialog_title"
+        style="@style/Color_1B202B_17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:visibility="gone"
-        android:textStyle="bold"
-        android:text="标题"/>
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="标题"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/text_dialog_content"
+        style="@style/Color_555E70_16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:maxEms="10"
-        android:minEms="10"
-        android:text="内容"/>
+        android:lineSpacingExtra="4dp"
+        android:text="内容" />
 
     <CheckBox
         android:id="@+id/checkbox_dialog"
+        style="@style/Color_555E70_16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"
-        android:text="勾选"/>
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="31dp"
+        android:button="@drawable/checkbox_style"
+        android:paddingLeft="11dp"
+        android:text="勾选"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="50dp"
-        android:background="#667288"/>
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/Color_D6E4F0" />
 
     <LinearLayout
         android:id="@+id/layout_button_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
         <TextView
             android:id="@+id/text_dialog_left"
+            style="@style/Color_555E70_18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
             android:layout_weight="1"
-            android:textColor="#C7CCDF"
-            android:text="取消"/>
+            android:gravity="center"
+            android:paddingBottom="21dp"
+            android:paddingTop="21dp"
+            android:text="取消" />
+
         <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="#667288"/>
+            android:layout_width="0.5dp"
+            android:layout_height="49dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/Color_D6E4F0" />
 
         <TextView
             android:id="@+id/text_dialog_right"
+            style="@style/Color_F2AD3E_18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
             android:layout_weight="1"
-            android:text="确认"/>
+            android:gravity="center"
+            android:paddingBottom="21dp"
+            android:paddingTop="21dp"
+            android:text="确认" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/text_dialog_only_btn"
+        style="@style/Color_F2AD3E_18"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
         android:gravity="center"
-        android:text="知道了"/>
+        android:paddingBottom="21dp"
+        android:paddingTop="21dp"
+        android:text="知道了" />
+
 </LinearLayout>
