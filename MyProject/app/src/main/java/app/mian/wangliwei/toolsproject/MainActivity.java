@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
                 .build().inject(this);
 
         // Example of a call to a native method
-        tvLogin.setText(stringFromJNI());
+        //tvLogin.setText(stringFromJNI());
         //Toast.makeText(this,"This is update",Toast.LENGTH_LONG).show();
     }
 
@@ -118,7 +118,8 @@ public class MainActivity extends AppCompatActivity implements AFragment.OnFragm
     @OnClick(R.id.sample_text)
     public void setTv(TextView tv1) {
         tv1.setText("Butter Knife");
-        intent = new Intent(this,LoginActivity.class);
+        //intent = new Intent(this,LoginActivity.class);
+        intent = new Intent(this,Pin1Activity.class);
         startActivity(intent);
     }
 

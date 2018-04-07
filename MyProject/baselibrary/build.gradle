@@ -22,6 +22,16 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            def dirs = ['p_pin1','p_pin2','p_pin3']
+            dirs.each { dir ->
+                java.srcDir("src/$dir/java")
+                res.srcDir("src/$dir/res")
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -45,9 +55,6 @@ dependencies {
     //recyclerview
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
-    //butterknife
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //retrofit
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     //gson
